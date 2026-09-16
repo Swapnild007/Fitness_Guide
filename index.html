@@ -9,25 +9,23 @@
 <title>Fitness Guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link id="module-css" rel="stylesheet" href="module-01.css?v=4">
+<link id="module-css" rel="stylesheet" href="module-01.css?v=5">
 </head>
 <body>
 <div id="module-root"></div>
 <script>
 (function(){
   const p=new URLSearchParams(location.search);
-  const requested=p.get('module');
-  const saved=!!localStorage.getItem('fitguide-foundation-v1');
-  const module=requested==='2'?'2':requested==='1'?'1':saved?'2':'1';
+  const module=p.get('module')==='2'?'2':'1';
   const root=document.querySelector('#module-root');
   if(module==='2'){
     root.id='module-02';
     document.title='Fitness Guide · Today';
-    document.querySelector('#module-css').href='module-02.css?v=4';
-    const s=document.createElement('script');s.src='module-02.js?v=4';document.body.appendChild(s);
+    document.querySelector('#module-css').href='module-02.css?v=5';
+    const s=document.createElement('script');s.src='module-02.js?v=5';document.body.appendChild(s);
   }else{
     root.id='module-01';
-    const s=document.createElement('script');s.src='module-01.js?v=4';document.body.appendChild(s);
+    const s=document.createElement('script');s.src='module-01.js?v=5';document.body.appendChild(s);
   }
 })();
 </script>

@@ -1,1 +1,1 @@
-{"name":"Fitness Guide","short_name":"Fitness Guide","start_url":"./","display":"standalone","background_color":"#070b14","theme_color":"#0b1220","description":"Personalized fitness planning, tracking and guidance platform","icons":[]}
+{"name":"Fitness Guide","short_name":"FitGuide","start_url":"./","scope":"./","display":"standalone","background_color":"#050a10","theme_color":"#07111b","description":"Adaptive workouts, nutrition, progress and fitness guidance.","icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]}

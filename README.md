@@ -8,7 +8,7 @@ A mobile-first adaptive fitness web app designed around calm, premium interactio
 - Today home with personalized session recommendation and weekly rhythm
 - Guided training mode with progress, sets, reps, load and RPE logging
 - Adaptive session length and environment/experience-based exercise selection
-- Complete searchable exercise library with 125 movements across lower body, posterior chain, upper push, upper pull, core, conditioning and mobility
+- Complete searchable exercise library with 123 movements across lower body, posterior chain, upper push, upper pull, core, conditioning and mobility
 - Exercise detail sheets with how-to, target and coaching cues
 - Nutrition guidance with goal-aware meal structure and diet preference handling
 - Progress history, weekly session count, total minutes and recent-session chart

@@ -12,11 +12,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="module-02.css?v=1">
+<link rel="stylesheet" href="module-02.css?v=3">
 </head>
 <body>
 <div id="module-02"></div>
-<script src="module-02.js?v=1"></script>
-<script>if('serviceWorker'in navigator){navigator.serviceWorker.register('sw.js?v=16').catch(()=>{})}</script>
+<script src="module-02.js?v=3"></script>
+<script>
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.getRegistrations().then(rs=>rs.forEach(r=>r.unregister())).catch(()=>{});
+  if(window.caches){caches.keys().then(keys=>keys.forEach(k=>caches.delete(k))).catch(()=>{});}
+}
+</script>
 </body>
 </html>

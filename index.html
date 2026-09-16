@@ -14,22 +14,14 @@
 </head>
 <body>
 <div id="app" class="app">
-<header class="topbar">
-  <div class="brand"><span class="brand-dot"></span><span>Fitness Guide</span></div>
-  <button class="avatar" data-action="profile" aria-label="Open profile">S</button>
-</header>
-<main id="main" class="main" aria-live="polite">
-  <section class="hero"><div class="eyebrow">FITNESS GUIDE</div><h1>Ready when<br>you are.</h1><p class="sub">Your daily plan is loading.</p></section>
-</main>
+<header class="topbar"><div class="brand"><span class="brand-dot"></span><span>Fitness Guide</span></div><button class="avatar" data-action="profile" aria-label="Open profile">S</button></header>
+<main id="main" class="main" aria-live="polite"><section class="hero"><div class="eyebrow">FITNESS GUIDE</div><h1>Your plan.<br>Your pace.</h1><p class="sub">Loading your experience…</p></section></main>
 <nav class="tabbar" aria-label="Primary navigation">
-  <button class="tab active" data-tab="today"><span class="tab-icon">◌</span><span>Today</span></button>
-  <button class="tab" data-tab="train"><span class="tab-icon">↗</span><span>Train</span></button>
-  <button class="tab" data-tab="nutrition"><span class="tab-icon">◒</span><span>Nutrition</span></button>
-  <button class="tab" data-tab="progress"><span class="tab-icon">⌁</span><span>Progress</span></button>
-  <button class="tab" data-tab="you"><span class="tab-icon">○</span><span>You</span></button>
+<button class="tab active" data-tab="today"><span class="tab-icon">◌</span><span>Today</span></button><button class="tab" data-tab="train"><span class="tab-icon">↗</span><span>Train</span></button><button class="tab" data-tab="nutrition"><span class="tab-icon">◒</span><span>Nutrition</span></button><button class="tab" data-tab="progress"><span class="tab-icon">⌁</span><span>Progress</span></button><button class="tab" data-tab="you"><span class="tab-icon">○</span><span>You</span></button>
 </nav>
-<div id="sheet" class="sheet" aria-hidden="true"><div class="sheet-backdrop" data-action="close-sheet"></div><section class="sheet-card" id="sheet-card"></section></div>
+<div id="sheet" class="sheet" aria-hidden="true"><div class="sheet-backdrop" data-action="close"></div><section class="sheet-card" id="sheet-card"></section></div>
 </div>
-<script src="app.js?v=20260916-2"></script>
+<script src="app.js?v=20260916-3"></script>
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js?v=4').catch(()=>{});}</script>
 </body>
 </html>

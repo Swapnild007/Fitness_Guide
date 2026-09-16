@@ -4,50 +4,51 @@ Fitness Guide is being built one product module at a time, with the foundation d
 
 ## Module 01 · Foundation & Onboarding
 
-**Status: complete and frozen as the active foundation experience.**
+**Status: complete and frozen as the foundation input layer.**
 
-The first module deliberately focuses on one job: understand the person before the training system starts prescribing anything.
+## Module 02 · Today
 
-### Flow
+**Status: built and active.**
 
-1. Product introduction and local-data explanation
-2. Primary fitness goal
-3. Personal baseline: name, age, height, weight and optional sex
-4. Training experience
-5. Sustainable weekly schedule and session duration
-6. Training environment and available equipment
-7. Nutrition preference and optional food restrictions
-8. Full review of captured inputs
-9. Starting-direction preview
-10. Local foundation save confirmation
+Module 02 has one job: turn the saved foundation into a calm, useful home experience that answers **"What should I do today, and why?"** without pretending that later training, nutrition or progress modules already exist.
 
-### Product principles
+### Module 02 experience
 
-- One decision at a time
-- Every required answer has a clear purpose
-- The user can review the source data before a plan is created
-- Schedule reflects realistic availability, not aspirational availability
-- Equipment and environment prevent obviously unsuitable starting recommendations
-- Nutrition preference is captured at the foundation rather than bolted on later
-- Local-first persistence for the current MVP
-- Responsive mobile, tablet and desktop layouts
+- Personalized greeting and goal context
+- One clear Today action
+- Training direction derived from the Module 01 goal
+- Session duration derived from the user's availability
+- Training environment and selected equipment surfaced transparently
+- Weekly rhythm view based on actual locally logged sessions
+- Coaching guidance based on experience level
+- Empty-state handling for a new user
+- Foundation-missing fallback instead of broken or guessed data
+- Responsive mobile/tablet/desktop layout
 - Reduced-motion support
-- No medical claims or clinical assessment
+- Local-first data usage
+- No medical claims
 
-### Competitive benchmark
+### Product boundary
 
-Module 01 is designed against current capabilities documented by leading fitness products. Apple Fitness+ uses activity preferences, durations and schedules for personalized recommendations and Custom Plans. Fitbod builds workouts from goal, experience, equipment, training schedule and workout preferences, then adapts from training history. Hevy provides broad exercise discovery and program filtering.
+The Today screen does **not** fake a complete workout engine. The Start action is reserved for Module 03, where the exercise selection, workout structure and guided execution will be implemented properly.
 
-Fitness Guide's foundation is intentionally structured so later modules can use one consistent profile instead of collecting disconnected preferences in separate features.
+## Architecture
 
-## Current architecture
-
-The current MVP is dependency-light and deployable through GitHub Pages. Module 01 uses plain HTML, CSS and JavaScript with browser local storage and a dedicated service-worker cache. No build step is required.
+The MVP remains dependency-light and GitHub Pages compatible. Each module has its own CSS/JavaScript boundary while sharing the foundation data contract through browser local storage.
 
 ## Product boundary
 
-This is a general fitness product, not medical software. Exercise guidance is general information and should be adapted to the user's abilities and professional advice where appropriate. No wearable, health-record, cloud-account or clinical integration is claimed in Module 01.
+Fitness Guide is a general fitness product, not medical software. Guidance is general information and should be adapted to the user's abilities and qualified professional advice where appropriate.
 
-## Next module
+## Module sequence
 
-Module 02 will begin only after the Foundation & Onboarding experience is accepted as a stable product boundary. It will consume the saved foundation rather than recreate onboarding logic.
+1. Foundation & Onboarding — complete
+2. Today — complete
+3. Train — next
+4. Exercise Library
+5. Guided Workout
+6. Nutrition
+7. Progress
+8. Adaptive Fitness Engine
+9. Profile & Settings
+10. Data / Accounts / Production Infrastructure

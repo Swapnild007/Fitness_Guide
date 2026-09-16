@@ -131,7 +131,28 @@
   <div id="modal" class="modal hidden"><div class="modal-backdrop" data-close-modal></div><div class="modal-sheet"><button class="modal-close" data-close-modal>×</button><div id="modalContent"></div></div></div>
   <div id="toast" class="toast"></div>
 </div>
-<script src="app.js"></script>
+<!-- Fitness Guide recovery guard -->
+<script>
+(() => {
+  const KEY = 'fitness-guide-v3';
+  try {
+    const raw = localStorage.getItem(KEY);
+    if (raw) JSON.parse(raw);
+  } catch (error) {
+    localStorage.removeItem(KEY);
+  }
+  window.setTimeout(() => {
+    const screens = [...document.querySelectorAll('.screen')];
+    if (screens.length && screens.every(screen => screen.classList.contains('hidden'))) {
+      const onboarding = document.getElementById('onboarding');
+      const nav = document.getElementById('bottomNav');
+      if (onboarding) onboarding.classList.remove('hidden');
+      if (nav) nav.classList.add('hidden');
+    }
+  }, 1200);
+})();
+</script>
+<script src="app.js?v=4"></script>
 <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}</script>
 </body>
 </html>

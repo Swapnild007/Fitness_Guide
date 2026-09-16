@@ -1,5 +1,5 @@
-const CACHE='fitguide-v5';
-const ASSETS=['./','./index.html','./app.css?v=20260916-3','./train-v4.css?v=20260916-1','./app.js?v=20260916-4','./train-v4.js?v=20260916-1','./manifest.json'];
+const CACHE='fitguide-v8';
+const ASSETS=['./','./index.html','./app.css?v=20260916-6','./train-v4.css?v=20260916-3','./train-v4-next.css?v=20260916-1','./app.js?v=20260916-6','./train-v4.js?v=20260916-6','./manifest.json'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)).then(()=>self.skipWaiting())));
-self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
-self.addEventListener('fetch',event=>{if(event.request.method!=='GET')return;event.respondWith(fetch(event.request).then(response=>{const copy=response.clone();caches.open(CACHE).then(cache=>cache.put(event.request,copy));return response}).catch(()=>caches.match(event.request).then(r=>r||caches.match('./index.html'))))});
+self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))));
+self.addEventListener('fetch',event=>{if(event.request.method!=='GET')return;event.respondWith(fetch(event.request,{cache:'no-store'}).then(response=>{const copy=response.clone();caches.open(CACHE).then(cache=>cache.put(event.request,copy));return response}).catch(()=>caches.match(event.request).then(r=>r||caches.match('./index.html'))))});

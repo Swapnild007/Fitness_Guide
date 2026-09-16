@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -23,6 +23,61 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+
+      - name: Repair client bootstrap and refresh cache
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          index = Path('index.html')
+          text = index.read_text(encoding='utf-8')
+          marker = '<!-- Fitness Guide recovery guard -->'
+          guard = '''<!-- Fitness Guide recovery guard -->
+          <script>
+          (() => {
+            const KEY = 'fitness-guide-v3';
+            try {
+              const raw = localStorage.getItem(KEY);
+              if (raw) JSON.parse(raw);
+            } catch (error) {
+              localStorage.removeItem(KEY);
+            }
+            window.setTimeout(() => {
+              const screens = [...document.querySelectorAll('.screen')];
+              if (screens.length && screens.every(screen => screen.classList.contains('hidden'))) {
+                const onboarding = document.getElementById('onboarding');
+                const nav = document.getElementById('bottomNav');
+                if (onboarding) onboarding.classList.remove('hidden');
+                if (nav) nav.classList.add('hidden');
+              }
+            }, 1200);
+          })();
+          </script>
+          '''
+          if marker not in text:
+              text = text.replace('<script src="app.js"></script>', guard + '<script src="app.js?v=4"></script>')
+          else:
+              text = text.replace('<script src="app.js"></script>', '<script src="app.js?v=4"></script>')
+          index.write_text(text, encoding='utf-8')
+
+          sw = Path('sw.js')
+          sw_text = sw.read_text(encoding='utf-8')
+          sw_text = sw_text.replace('fitness-guide-v3', 'fitness-guide-v4')
+          sw_text = sw_text.replace("'./app.js'", "'./app.js?v=4'")
+          sw_text = sw_text.replace('"./app.js"', '"./app.js?v=4"')
+          sw.write_text(sw_text, encoding='utf-8')
+          PY
+
+      - name: Persist repair
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html sw.js
+          if ! git diff --cached --quiet; then
+            git commit -m "Fix Fitness Guide bootstrap and cache refresh"
+            git push
+          fi
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact

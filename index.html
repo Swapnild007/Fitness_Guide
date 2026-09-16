@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1220">
+  <meta name="description" content="Fitness Guide is a personalized fitness planning, tracking and guidance platform.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <title>Fitness Guide</title>
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div>
+        <span class="eyebrow">PERSONAL FITNESS PLATFORM</span>
+        <h1>Fitness Guide</h1>
+      </div>
+      <button id="installBtn" class="icon-btn" hidden aria-label="Install app">＋</button>
+    </header>
+
+    <main>
+      <section id="onboarding" class="screen hidden">
+        <div class="hero-card">
+          <span class="eyebrow">WELCOME</span>
+          <h2>Build a plan around your life.</h2>
+          <p>Set your goal, preferences and availability. Fitness Guide uses these inputs to create practical guidance instead of a one-size-fits-all plan.</p>
+        </div>
+        <form id="profileForm" class="card form-grid">
+          <label>Age<input id="age" type="number" min="13" max="100" required></label>
+          <label>Sex
+            <select id="sex" required><option value="">Select</option><option>Female</option><option>Male</option><option>Other</option><option>Prefer not to say</option></select>
+          </label>
+          <label>Height (cm)<input id="height" type="number" min="100" max="250" required></label>
+          <label>Weight (kg)<input id="weight" type="number" min="30" max="400" step="0.1" required></label>
+          <label>Activity level<select id="activity" required><option value="sedentary">Mostly sedentary</option><option value="light">Lightly active</option><option value="moderate">Moderately active</option><option value="very">Very active</option><option value="athlete">Athlete / highly active</option></select></label>
+          <label>Primary goal<select id="goal" required><option value="fat-loss">Lose body fat</option><option value="muscle">Build muscle</option><option value="strength">Build strength</option><option value="maintain">Maintain fitness</option><option value="cardio">Improve cardio fitness</option><option value="mobility">Improve mobility</option><option value="habits">Build healthier habits</option></select></label>
+          <label>Training days / week<input id="trainingDays" type="number" min="1" max="7" value="3" required></label>
+          <label>Session length<select id="sessionLength"><option value="30">30 minutes</option><option value="45">45 minutes</option><option value="60" selected>60 minutes</option><option value="90">90 minutes</option></select></label>
+          <label>Training environment<select id="environment"><option>Gym</option><option>Home</option><option>Outdoors</option><option>No equipment</option><option>Mixed</option></select></label>
+          <label>Diet style<select id="diet"><option>Omnivore</option><option>Vegetarian</option><option>Eggetarian</option><option>Vegan</option><option>Other</option></select></label>
+          <label class="full">What matters most to you?<textarea id="notes" rows="3" placeholder="Examples: improve energy, get stronger, prepare for a trek..."></textarea></label>
+          <button class="primary full" type="submit">Create my plan</button>
+        </form>
+      </section>
+
+      <section id="dashboard" class="screen hidden">
+        <div class="section-head"><div><span class="eyebrow">TODAY</span><h2 id="greeting">Your plan</h2></div><button id="editProfile" class="secondary">Edit profile</button></div>
+        <div id="insights" class="insight-grid"></div>
+        <div class="card guidance"><span class="eyebrow">GUIDANCE ENGINE</span><h3 id="guidanceTitle"></h3><p id="guidanceText"></p><ul id="guidanceList"></ul></div>
+        <div class="section-head"><h2>Quick log</h2></div>
+        <div class="quick-grid">
+          <button data-action="water" class="quick-card">💧<strong>Water</strong><span id="waterValue">0 ml</span></button>
+          <button data-action="steps" class="quick-card">🚶<strong>Steps</strong><span id="stepsValue">0</span></button>
+          <button data-action="workout" class="quick-card">🏋️<strong>Workout</strong><span id="workoutValue">Not logged</span></button>
+          <button data-action="weight" class="quick-card">⚖️<strong>Weight</strong><span id="weightValue">--</span></button>
+        </div>
+      </section>
+
+      <section id="workouts" class="screen hidden">
+        <div class="section-head"><div><span class="eyebrow">TRAINING</span><h2>Workout planner</h2></div><button id="generateWorkout" class="primary">Generate</button></div>
+        <div id="workoutPlan" class="stack"></div>
+      </section>
+
+      <section id="nutrition" class="screen hidden">
+        <div class="section-head"><div><span class="eyebrow">NUTRITION</span><h2>Daily nutrition</h2></div></div>
+        <div id="nutritionCards" class="metric-grid"></div>
+        <div class="card"><h3>Food log</h3><form id="foodForm" class="inline-form"><input id="foodName" placeholder="Food / meal" required><input id="foodCalories" type="number" min="0" placeholder="Calories"><input id="foodProtein" type="number" min="0" placeholder="Protein g"><button class="primary">Add</button></form><div id="foodLog" class="stack"></div></div>
+      </section>
+
+      <section id="progress" class="screen hidden">
+        <div class="section-head"><div><span class="eyebrow">TRENDS</span><h2>Your progress</h2></div></div>
+        <div id="progressStats" class="metric-grid"></div>
+        <div class="card"><h3>Weight history</h3><div id="weightChart" class="chart"></div><div id="historyList" class="history-list"></div></div>
+      </section>
+
+      <section id="profile" class="screen hidden">
+        <div class="section-head"><div><span class="eyebrow">PROFILE</span><h2>Your preferences</h2></div></div>
+        <div id="profileSummary" class="card"></div>
+        <div class="card safety"><h3>Safety</h3><p>Fitness Guide provides general fitness and nutrition information. It does not diagnose medical conditions or replace care from a qualified healthcare professional. Stop exercise and seek appropriate care for concerning symptoms or injuries.</p></div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <button data-screen="dashboard">⌂<span>Home</span></button>
+      <button data-screen="workouts">🏋<span>Workout</span></button>
+      <button data-screen="nutrition">🍽<span>Nutrition</span></button>
+      <button data-screen="progress">📈<span>Progress</span></button>
+      <button data-screen="profile">◉<span>Profile</span></button>
+    </nav>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="app.js"></script>
+  <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});</script>
+</body>
+</html>
